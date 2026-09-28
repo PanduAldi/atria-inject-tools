@@ -1,0 +1,7 @@
+profiles/
+keys.json
+.env
+__pycache__/
+*.pyc
+errors/
+.unlock

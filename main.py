@@ -10,8 +10,6 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import hashlib
-import hmac
 import json
 import os
 import sys
@@ -25,46 +23,6 @@ from atria_keys import create_key, list_existing_keys, KeyError_
 
 PROFILE_BASE = Path(__file__).parent / "profiles"
 KEY_NAME_PREFIX = os.environ.get("KEY_NAME_PREFIX", "atria-inject")
-
-# Bulk mode ( --accounts ) is donor-gated. After supporting the project you receive
-# an unlock word; set it in the ATRIA_UNLOCK env var to enable multi-account runs.
-# Single-account mode ( --email ) is free for everyone.
-_UNLOCK_FILE = Path(__file__).parent / ".unlock"
-_UNLOCK_SECRET = b"atria-inject-tools::bulk-mode::v1"
-
-
-def _unlock_hash(word: str) -> str:
-    return hmac.new(_UNLOCK_SECRET, word.strip().lower().encode(), hashlib.sha256).hexdigest()
-
-
-def _expected_unlock_hash() -> str | None:
-    """The unlock hash is NOT shipped in the repo — it lives in .unlock (gitignored)
-    and only on the maintainer's machine, so the published repo cannot be cracked
-    by reading it. Returns None when the file is absent (bulk fully locked)."""
-    try:
-        return _UNLOCK_FILE.read_text(encoding="utf-8").strip() or None
-    except OSError:
-        return None
-
-
-def _bulk_unlocked() -> bool:
-    """True when the user has set ATRIA_UNLOCK to the donor unlock word."""
-    word = os.environ.get("ATRIA_UNLOCK", "")
-    if not word:
-        return False
-    expected = _expected_unlock_hash()
-    if not expected:
-        return False
-    return hmac.compare_digest(_unlock_hash(word), expected)
-
-
-def _unlock_hint() -> str:
-    return (
-        "\nBulk mode (--accounts) memerlukan kata pembuka.\n"
-        "Dukung proyek ini di https://saweria.co/pandualdi lalu set:\n"
-        "  set ATRIA_UNLOCK=<kata pembuka>\n"
-        "Mode satuan (--email ADDR) gratis untuk semua."
-    )
 
 
 def read_accounts(path: Path) -> list[str]:
@@ -182,9 +140,6 @@ def main() -> int:
 
     emails: list[str] = []
     if args.accounts:
-        if not _bulk_unlocked():
-            print("Bulk mode terkunci." + _unlock_hint(), file=sys.stderr)
-            return 3
         emails = read_accounts(args.accounts)
     if args.email:
         emails.append(args.email)

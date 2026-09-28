@@ -4,4 +4,3 @@ keys.json
 __pycache__/
 *.pyc
 errors/
-.unlock

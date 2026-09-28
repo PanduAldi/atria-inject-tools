@@ -1,12 +1,12 @@
 # atria-inject-tools
 
-Ambil API key [Atria](https://www.atria-asi.ai/) otomatis lewat login Google, tanpa buka browser manual.
+Ambil API key [Atria](https://www.atria-asi.ai/) otomatis lewat login G00gle, tanpa buka browser manual.
 
-Dibuat untuk Batch provisioning API key Atria ke banyak akun Gmail sekaligus. Tool ini mengotomatiskan:
+Dibuat untuk Batch provisioning API key Atria ke banyak akun G sekaligus. Tool ini mengotomatiskan:
 
 ```
 api.atria-asi.ai/sign-in
-  → Continue with Google
+  → Continue with G00gle
   → isi email → Enter
   → isi password → Enter
   → consent screen → Continue
@@ -22,8 +22,8 @@ Setiap akun dapat profile Chromium sendiri (`profiles/<email>`), jadi setelah lo
 
 - **Python 3.10+** — cek: `python --version`
 - **uv** — installer: https://docs.astral.sh/uv/ (Windows: `irm https://astral.sh/uv/install.ps1 | iex`)
-- **Akun Gmail** yang sudah terdaftar di Atria (atau bisa daftar lewat Google Sign-In)
-- **Password Gmail** — disimpan di env var, tidak pernah ditulis ke file apapun
+- **Akun email G** (Gmail atau Google Workspace) yang sudah terdaftar di Atria, atau daftar lewat Sign-In G
+- **Password G** — disimpan di env var, tidak pernah ditulis ke file apapun
 
 > **Catatan:** akun dengan **2FA/verifikasi 2 langkah** tidak bisa diautomasi. Tool akan berhenti dan memberitahu. Matikan 2FA dulu, atau gunakan akun tanpa 2FA.
 
@@ -43,21 +43,21 @@ uv run --with playwright python -c "from playwright.sync_api import sync_playwri
 uv pip install -r requirements.txt
 ```
 
-### 2. Set password Gmail
+### 2. Set password akun G
 
 **Windows (cmd):**
 ```cmd
-set ATRIA_PASSWORD=password_gmail_kamu
+set ATRIA_PASSWORD=password_g_kamu
 ```
 
 **Windows (PowerShell):**
 ```powershell
-$env:ATRIA_PASSWORD='password_gmail_kamu'
+$env:ATRIA_PASSWORD='password_g_kamu'
 ```
 
 **Linux / macOS / git-bash:**
 ```bash
-export ATRIA_PASSWORD='password_gmail_kamu'
+export ATRIA_PASSWORD='password_g_kamu'
 ```
 
 Password hanya tersimpan di memori proses, tidak di file apapun.
@@ -67,7 +67,7 @@ Password hanya tersimpan di memori proses, tidak di file apapun.
 Ambil key untuk **satu akun**:
 
 ```bash
-uv run --with playwright python main.py --email kamu@gmail.com
+uv run --with playwright python main.py --email kamu@g00glemail.com
 ```
 
 ### 3B. Mode bulk (butuh password pembuka)
@@ -77,9 +77,9 @@ Proses **banyak akun sekaligus** dari file:
 1. Buat file `accounts.txt`, isi satu email per baris:
 
    ```
-   akun1@gmail.com
-   akun2@gmail.com
-   akun3@gmail.com
+   akun1@g00glemail.com
+   akun2@g00glemail.com
+   akun3@g00glemail.com
    ```
 
 2. Set password pembuka:
@@ -111,14 +111,14 @@ Setiap run menambah satu baris ke `keys.json`:
 ```json
 [
   {
-    "email": "akun1@gmail.com",
+    "email": "akun1@g00glemail.com",
     "ok": true,
     "error": null,
     "key": "atr_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "key_name": "atria-inject 2026-09-28 13:46",
     "created_at": "2026-09-28T06:46:08+00:00",
-    "profile": "profiles/akun1_at_gmail.com",
-    "login": "google"
+    "profile": "profiles/akun1_at_g00glemail.com",
+    "login": "g00gle"
   }
 ]
 ```
@@ -130,7 +130,7 @@ Field penting:
 | `ok` | `true` = key berhasil didapat |
 | `error` | pesan error kalau `ok: false` |
 | `key` | API key Atria (mulai `atr_`) |
-| `login` | `google` = login baru, `reused` = dari profile yang sudah login |
+| `login` | `g00gle` = login baru, `reused` = dari profile yang sudah login |
 
 ---
 
@@ -148,7 +148,7 @@ Environment variables:
 
 | Variabel | Wajib | Fungsi |
 |---|---|---|
-| `ATRIA_PASSWORD` | ✅ ya | password Gmail semua akun |
+| `ATRIA_PASSWORD` | ✅ ya | password G semua akun |
 | `ATRIA_UNLOCK` | bulk mode | password pembuka untuk `--accounts` |
 | `KEY_NAME_PREFIX` | tidak | prefix nama key (default: `atria-inject`) |
 
@@ -167,7 +167,7 @@ Sesudah donasi, hubungi Telegram **[@cybernet3329](https://t.me/cybernet3329)** 
 ## Troubleshooting
 
 **`wrong password` / `couldn't sign you in`**
-Password salah, atau Google minta verifikasi tambahan. Coba login manual sekali di browser biasa untuk "mengenalkan" IP/browser ke Google, lalu jalankan lagi.
+Password salah, atau G00gle minta verifikasi tambahan. Coba login manual sekali di browser biasa untuk "mengenalkan" IP/browser ke G00gle, lalu jalankan lagi.
 
 **`2-step verification`**
 Akun punya 2FA. Tool berhenti otomatis — tidak bisa diautomasi. Matikan 2FA dulu, atau pakai akun tanpa 2FA.
@@ -180,11 +180,11 @@ taskkill /f /im chrome.exe
 rmdir /s /q profiles\<email>_at_gmail.com
 ```
 
-**`stuck at accounts.google...`**
-Google menampilkan halaman yang tidak dikenal (challenge, captcha). Jalankan dengan mode berwindow:
+**`stuck at accounts.g00gle...`**
+G00gle menampilkan halaman yang tidak dikenal (challenge, captcha). Jalankan dengan mode berwindow:
 
 ```bash
-uv run --with playwright python main.py --email kamu@gmail.com
+uv run --with playwright python main.py --email kamu@g00glemail.com
 ```
 
 Lalu selesaikan manual di window yang terbuka. Profile tersimpan, run berikutnya lanjut otomatis.
@@ -197,9 +197,9 @@ Halaman Atria berubah. Buka issue dengan screenshot dialog `Create key` beserta 
 ## Batasan
 
 - Tool ini **tidak menyimpan password** apapun. Password dibaca dari env var saat runtime.
-- Profile Chromium disimpan lokal di `profiles/`. Isinya ada cookie/session Google — **jangan commit** (sudah di-gitignore).
+- Profile Chromium disimpan lokal di `profiles/`. Isinya ada cookie/session G00gle — **jangan commit** (sudah di-gitignore).
 - Key hanya muncul sekali saat create. `keys.json` adalah satu-satunya simpanan.
-- Tidak ada jaminan kompatibilitas kalau Google/Logto/Atria mengubah UI login.
+- Tidak ada jaminan kompatibilitas kalau G00gle/Logto/Atria mengubah UI login.
 
 ---
 

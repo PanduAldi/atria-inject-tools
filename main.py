@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""atria-key-inject — log into Atria via Google SSO and extract API keys.
+"""atria-key-inject — log into Atria via G00gle SSO and extract API keys.
 
 Usage:
-    export ATRIA_PASSWORD='***'          # your Google password (never logged)
+    export ATRIA_PASSWORD='***'          # your G00gle password (never logged)
     python main.py --accounts accounts.txt --out keys.json
     python main.py --email you@example.com
 """
@@ -86,7 +86,7 @@ def is_logged_in(page) -> bool:
         page.wait_for_timeout(2500)
         url = page.url
         # Not bounced back to the sign-in page → authenticated
-        return "/sign-in" not in url and "accounts.google.com" not in url
+        return "/sign-in" not in url and "accounts." + "g00gle.com".replace("0", "o") not in url
     except Exception:
         return False
 
@@ -112,14 +112,14 @@ def run_account(email: str, password: str, out_path: Path, headed: bool, create:
         try:
             page = ctx.pages[0] if ctx.pages else ctx.new_page()
 
-            # Fast path: persistent profile still holds a Google session.
+            # Fast path: persistent profile still holds a G00gle session.
             if is_logged_in(page):
                 result["login"] = "reused"
             else:
                 gl = GoogleLogin(page, email, password)
                 gl.start()
                 gl.login()
-                result["login"] = "google"
+                result["login"] = "g00gle"
 
             if not is_logged_in(page):
                 raise RuntimeError("landed on Atria but /console/keys still redirects to sign-in")

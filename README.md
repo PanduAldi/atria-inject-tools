@@ -70,7 +70,7 @@ Ambil key untuk **satu akun**:
 uv run --with playwright python main.py --email kamu@gmail.com
 ```
 
-### 3B. Mode bulk (butuh kata pembuka)
+### 3B. Mode bulk (butuh password pembuka)
 
 Proses **banyak akun sekaligus** dari file:
 
@@ -82,7 +82,7 @@ Proses **banyak akun sekaligus** dari file:
    akun3@gmail.com
    ```
 
-2. Set kata pembuka:
+2. Set password pembuka:
 
    ```cmd
    set ATRIA_UNLOCK=kata_pembuka
@@ -94,7 +94,13 @@ Proses **banyak akun sekaligus** dari file:
    uv run --with playwright python main.py --accounts accounts.txt
    ```
 
-**Mode bulk memerlukan kata pembuka** sebagai bentuk dukungannya ke proyek ini.
+**Mode bulk memerlukan password pembuka** sebagai bentuk dukungannya ke proyek ini.
+
+Cara mendapatkannya:
+
+1. Donasi seikhlasnya di **[https://saweria.co/pandualdi](https://saweria.co/pandualdi)**
+2. Hubungi Telegram **[@cybernet3329](https://t.me/cybernet3329)** dengan bukti donasi
+3. Kamu akan dapat password pembuka untuk mode bulk
 
 ---
 
@@ -132,7 +138,7 @@ Field penting:
 
 ```bash
 python main.py --email EMAIL                        # mode satuan
-python main.py --accounts FILE                      # mode bulk (perlu kata pembuka)
+python main.py --accounts FILE                      # mode bulk (perlu password pembuka)
 python main.py --accounts FILE --create             # selalu buat key baru, walau sudah ada
 python main.py --accounts FILE --out hasil.json     # simpan ke file lain
 python main.py --accounts FILE --headless           # tanpa window (eksperimental)
@@ -143,7 +149,7 @@ Environment variables:
 | Variabel | Wajib | Fungsi |
 |---|---|---|
 | `ATRIA_PASSWORD` | ✅ ya | password Gmail semua akun |
-| `ATRIA_UNLOCK` | bulk mode | kata pembuka untuk `--accounts` |
+| `ATRIA_UNLOCK` | bulk mode | password pembuka untuk `--accounts` |
 | `KEY_NAME_PREFIX` | tidak | prefix nama key (default: `atria-inject`) |
 
 ---
@@ -154,7 +160,7 @@ Tool ini gratis dan open source. Kalau membantu pekerjaanmu, dukung via Saweria:
 
 **[https://saweria.co/pandualdi](https://saweria.co/pandualdi)**
 
-Sesudah donasi, DM saya untuk dapat **kata pembuka** mode bulk. Mode satuan selalu gratis, tanpa donasi.
+Sesudah donasi, hubungi Telegram **[@cybernet3329](https://t.me/cybernet3329)** untuk dapat **password pembuka** mode bulk. Mode satuan selalu gratis, tanpa donasi.
 
 ---
 

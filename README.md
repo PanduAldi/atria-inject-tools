@@ -143,9 +143,13 @@ Environment variables:
 
 ## Dukung proyek ini
 
-Tool ini gratis dan open source, semua fitur bisa dipakai tanpa batas. Kalau membantu pekerjaanmu, dukung via Saweria:
+Tool ini gratis dan open source, semua fitur bisa dipakai tanpa batas. Kalau tool ini membantu pekerjaanmu, traktir kopi:
 
-**[https://saweria.co/pandualdi](https://saweria.co/pandualdi)**
+<p align="center">
+  <a href="https://saweria.co/pandualdi">
+    <img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-Saweria-FF6B35?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white" alt="Buy me a coffee via Saweria">
+  </a>
+</p>
 
 Donasi tidak membuka fitur apapun — semua sudah gratis. Hanya sebagai apresiasi kalau tool ini bermanfaat.
 

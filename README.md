@@ -92,6 +92,14 @@ Semua fitur gratis — mode satuan maupun bulk.
 
 ---
 
+<p align="center">
+  <a href="https://saweria.co/pandualdi">
+    <img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-Saweria-FF6B35?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white" alt="Buy me a coffee via Saweria">
+  </a>
+</p>
+
+---
+
 ## Output
 
 Setiap run menambah satu baris ke `keys.json`, dan setelah semua akun selesai, key yang berhasil juga di-export ke **`APIKEY.txt`** (satu key per baris, tanpa metadata) di folder yang sama. File ini untuk dipakai langsung — **jangan di-commit**, sudah di-gitignore.
@@ -145,11 +153,7 @@ Environment variables:
 
 Tool ini gratis dan open source, semua fitur bisa dipakai tanpa batas. Kalau tool ini membantu pekerjaanmu, traktir kopi:
 
-<p align="center">
-  <a href="https://saweria.co/pandualdi">
-    <img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-Saweria-FF6B35?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white" alt="Buy me a coffee via Saweria">
-  </a>
-</p>
+**[https://saweria.co/pandualdi](https://saweria.co/pandualdi)**
 
 Donasi tidak membuka fitur apapun — semua sudah gratis. Hanya sebagai apresiasi kalau tool ini bermanfaat.
 

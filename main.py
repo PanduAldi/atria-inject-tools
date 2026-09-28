@@ -165,6 +165,18 @@ def main() -> int:
             print(f"  FAIL {r['error']}")
 
     print(f"\ndone. ok={len(emails) - failures} fail={failures} -> {args.out}")
+
+    # Dump plaintext keys to APIKEY.txt after everything finishes.
+    apikey_path = args.out.parent / "APIKEY.txt"
+    try:
+        rows = json.loads(args.out.read_text(encoding="utf-8"))
+        keys = [r["key"] for r in rows if r.get("ok") and r.get("key")]
+        if keys:
+            apikey_path.write_text("\n".join(keys) + "\n", encoding="utf-8")
+            print(f"exported {len(keys)} key -> {apikey_path}")
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"could not export APIKEY.txt: {e}", file=sys.stderr)
+
     return 1 if failures else 0
 
 

@@ -1,5 +1,6 @@
 profiles/
 keys.json
+APIKEY.txt
 .env
 __pycache__/
 *.pyc

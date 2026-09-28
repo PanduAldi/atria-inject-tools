@@ -94,7 +94,7 @@ Semua fitur gratis — mode satuan maupun bulk.
 
 ## Output
 
-Setiap run menambah satu baris ke `keys.json`:
+Setiap run menambah satu baris ke `keys.json`, dan setelah semua akun selesai, key yang berhasil juga di-export ke **`APIKEY.txt`** (satu key per baris, tanpa metadata) di folder yang sama. File ini untuk dipakai langsung — **jangan di-commit**, sudah di-gitignore.
 
 ```json
 [

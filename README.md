@@ -149,15 +149,6 @@ Environment variables:
 
 ---
 
-## Dukung proyek ini
-
-Tool ini gratis dan open source, semua fitur bisa dipakai tanpa batas. Kalau tool ini membantu pekerjaanmu, traktir kopi:
-
-**[https://saweria.co/pandualdi](https://saweria.co/pandualdi)**
-
-Donasi tidak membuka fitur apapun — semua sudah gratis. Hanya sebagai apresiasi kalau tool ini bermanfaat.
-
----
 
 ## Troubleshooting
 
